@@ -19,13 +19,18 @@ app.use(morgan('dev'));
 app.use('/tasks', taskRoutes);
 
 // Serve frontend
-app.use(express.static(path.join(__dirname, '../frontend')));
+const frontendPath = path.join(__dirname, '../frontend');
+app.use(express.static(frontendPath));
 
-app.get(/.*/, (req, res) =>
-    res.sendFile(
-        path.resolve(__dirname, '../', 'frontend', 'index.html')
-    )
-);
+app.get(/.*/, (req, res) => {
+    const indexPath = path.join(frontendPath, 'index.html');
+    if (require('fs').existsSync(indexPath)) {
+        res.sendFile(indexPath);
+    } else {
+        // Fallback or debug info
+        res.status(404).send('Frontend index.html not found at: ' + indexPath);
+    }
+});
 
 app.use(errorHandler);
 
