@@ -16,6 +16,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', server_time: new Date().toISOString() });
+});
+
 app.use('/tasks', taskRoutes);
 
 // Serve frontend
