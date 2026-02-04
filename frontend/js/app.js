@@ -1,4 +1,4 @@
-const API_URL = '/tasks';
+const API_URL = 'http://localhost:5000/api/tasks';
 
 const taskList = document.getElementById('taskList');
 const taskModal = document.getElementById('taskModal');
@@ -51,7 +51,8 @@ async function fetchTasks(status = 'All') {
         const response = await fetch(url);
         if (!response.ok) throw new Error('Failed to fetch tasks');
 
-        tasks = await response.json();
+        const result = await response.json();
+        tasks = result.data || [];
         renderTasks(tasks);
     } catch (error) {
         showToast(error.message, 'error');
