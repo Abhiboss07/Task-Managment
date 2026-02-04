@@ -2,6 +2,10 @@
 
 A production-quality Task Management Web Application demonstrating full-stack development skills with clean architecture and industry best practices.
 
+**🎯 Project Status:** ✅ **COMPLETE & TESTED**  
+**🌐 Live Demo:** Available at `http://localhost:5000` (when running locally)  
+**📦 Repository:** `https://github.com/Abhiboss07/Task-Managment`
+
 ## 🚀 Tech Stack
 
 - **Frontend**: HTML5, CSS3 (Vanilla), JavaScript (ES6+)
@@ -43,15 +47,17 @@ Task Management/
 - Node.js (v14 or higher)
 - MongoDB (Running locally or MongoDB Atlas)
 
-### Installation
+### Quick Start
 
-1.  **Navigate to the backend directory:**
+1.  **Clone the repository:**
     ```bash
-    cd backend
+    git clone https://github.com/Abhiboss07/Task-Managment.git
+    cd Task-Managment
     ```
 
 2.  **Install Dependencies:**
     ```bash
+    cd backend
     npm install
     ```
 
@@ -68,20 +74,16 @@ Task Management/
       ```
     - Modify `MONGODB_URI` if you are using MongoDB Atlas.
 
-### Running the Application
-
-1.  **Start the Server:**
+4.  **Start the Application:**
     ```bash
     npm start
-    # OR for development (using nodemon if installed)
-    npm run dev
     ```
     *The server will start on port 5000.*
 
-2.  **Access the Application:**
-    - Open the frontend directly: `frontend/index.html`
-    - API endpoints are available at: `http://localhost:5000/api/tasks`
-    - Health check endpoint: `http://localhost:5000/api/health`
+5.  **Access the Application:**
+    - 🌐 **Frontend:** `http://localhost:5000`
+    - 🔧 **API Base URL:** `http://localhost:5000/api`
+    - ❤️ **Health Check:** `http://localhost:5000/api/health`
 
 ## 📡 API Endpoints
 
