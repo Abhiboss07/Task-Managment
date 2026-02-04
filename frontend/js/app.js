@@ -129,7 +129,10 @@ async function handleFormSubmit(e) {
             });
         }
 
-        if (!response.ok) throw new Error('Failed to save task');
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to save task');
+        }
 
         showToast(isEditing ? 'Task updated successfully' : 'Task created successfully', 'success');
         closeModal();
@@ -148,7 +151,10 @@ async function deleteTask(id) {
             method: 'DELETE'
         });
 
-        if (!response.ok) throw new Error('Failed to delete task');
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to delete task');
+        }
 
         showToast('Task deleted', 'success');
         fetchTasks(statusFilter.value);
