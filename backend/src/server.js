@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -8,6 +8,11 @@ const taskRoutes = require('./routes/tasks');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
+
+console.log('Environment variables loaded:');
+console.log('MONGODB_URI:', process.env.MONGODB_URI);
+console.log('PORT:', process.env.PORT);
+console.log('NODE_ENV:', process.env.NODE_ENV);
 
 connectDB();
 
@@ -27,7 +32,7 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/tasks', taskRoutes);
 
-app.use('*', (req, res) => {
+app.use((req, res) => {
   res.status(404).json({
     success: false,
     message: 'Route not found'
