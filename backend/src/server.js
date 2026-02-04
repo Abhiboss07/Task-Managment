@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -32,11 +33,19 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/tasks', taskRoutes);
 
-app.use((req, res) => {
+// Serve static frontend files
+app.use(express.static('../frontend'));
+
+app.use('/api', (req, res) => {
   res.status(404).json({
     success: false,
-    message: 'Route not found'
+    message: 'API route not found'
   });
+});
+
+// Fallback to frontend for non-API routes
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 app.use(errorHandler);

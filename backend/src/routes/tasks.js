@@ -11,11 +11,11 @@ const { validateTask } = require('../middleware/validation');
 
 router.route('/')
   .get(getAllTasks)
-  .post(validateTask, createTask);
+  .post(createTask);
 
 router.route('/:id')
   .get(getTaskById)
-  .put(validateTask, updateTask)
+  .put(updateTask)
   .delete(deleteTask);
 
 module.exports = router;
